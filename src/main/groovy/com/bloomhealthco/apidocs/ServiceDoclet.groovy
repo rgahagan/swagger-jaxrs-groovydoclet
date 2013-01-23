@@ -126,7 +126,12 @@ class ServiceDoclet {
     private static String path(GroovyAnnotationRef[] annotations) {
         for (GroovyAnnotationRef annotationRef : annotations) {
             if (annotationRef.description().contains(PATH)) {
-                String path = annotationRef.description().substring(annotationRef.description().indexOf("\"") + 1, annotationRef.description().lastIndexOf("\""))
+                String path
+                if (annotationRef.description().indexOf("'") > 0) {
+                    path = annotationRef.description().substring(annotationRef.description().indexOf("'") + 1, annotationRef.description().lastIndexOf("'"))
+                } else {
+                    path = annotationRef.description().substring(annotationRef.description().indexOf("\"") + 1, annotationRef.description().lastIndexOf("\""))
+                }
                 return path.startsWith("/") ? path : "/" + path
             }
         }
