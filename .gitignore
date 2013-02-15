@@ -3,3 +3,6 @@
 *.iws
 *.iml
 target/
+build
+.gradle
+.idea

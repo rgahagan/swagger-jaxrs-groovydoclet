@@ -1,0 +1,18 @@
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'groovy'
+
+group 'com.bloomhealthco'
+version = '0.2.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.1.1'
+    compile 'org.codehaus.groovy:enhanced-groovydoc:0.6-SNAPSHOT'
+    compile 'org.codehaus.jackson:jackson-core-asl:1.9.9'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.9'
+}
