@@ -2,12 +2,16 @@ package com.bloomhealthco.apidocs
 
 import com.sun.javadoc.DocErrorReporter
 import com.sun.javadoc.LanguageVersion
+import org.codehaus.groovy.tools.groovydoc.ExternalGroovyClassDoc
 import org.codehaus.groovy.tools.groovydoc.SimpleGroovyMethodDoc
 import org.codehaus.jackson.map.ObjectMapper
 import org.codehaus.jackson.map.SerializationConfig
 import org.codehaus.groovy.groovydoc.*
 import com.sun.javadoc.RootDoc
 import org.codehaus.groovy.enhancedgroovydoc.wrapper.RootDocWrapper
+
+import javax.ws.rs.PathParam
+import javax.ws.rs.QueryParam
 
 /**
  * User: rgahagan
@@ -207,13 +211,13 @@ class ServiceDoclet {
      */
     private static String paramTypeOf(GroovyParameter parameter) {
         for (GroovyAnnotationRef annotation : parameter.annotations()) {
-            if (annotation.name().equals(PATH_PARAM)) {
-                return "path"
-            } else if (annotation.name().equals(QUERY_PARAM)) {
-                return "query"
+            if (annotation.type() instanceof ExternalGroovyClassDoc) {
+                ExternalGroovyClassDoc ref = (ExternalGroovyClassDoc) annotation.type()
+                if (ref.externalClass() == PathParam) return 'path'
+                if (ref.externalClass() == QueryParam) return 'query'
             }
         }
-        return "body"
+        return 'body'
     }
 
     /**
