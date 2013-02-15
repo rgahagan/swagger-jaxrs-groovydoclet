@@ -15,4 +15,5 @@ dependencies {
     compile 'org.codehaus.groovy:enhanced-groovydoc:0.6-SNAPSHOT'
     compile 'org.codehaus.jackson:jackson-core-asl:1.9.9'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.9'
+    compile 'javax.ws.rs:jsr311-api:1.1.1'
 }
